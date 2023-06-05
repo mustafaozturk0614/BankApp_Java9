@@ -15,6 +15,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
+@NamedQueries({
+      @NamedQuery(name = "findByBalance", query = "select a from Account as a  where  a.balance>:my_balance"),
+       @NamedQuery(name = "findByCreatedDate" ,query="select  a from Account  as a where a.createdDate<:date"),
+       @NamedQuery(name = "sumAccount" ,query="select  a from Account  as a where a.bank.id=:bankId"),
+        @NamedQuery(name="joinornek" ,query="select a.accountNumber,b.name from Account  as a  join Bank as b on a.bank.id=b.id")
+}
+)
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

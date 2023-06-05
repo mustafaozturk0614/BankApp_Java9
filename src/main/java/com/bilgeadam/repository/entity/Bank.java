@@ -1,9 +1,6 @@
 package com.bilgeadam.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,8 +16,10 @@ public class Bank {
     private  Long id;
     private String name;
     @OneToMany(mappedBy = "bank")
+    @ToString.Exclude
     private List<Account> accounts;
-    @ManyToMany
+    @ManyToMany(mappedBy = "banks")
+    @ToString.Exclude
     private List<Customer> customers;
 
 }
